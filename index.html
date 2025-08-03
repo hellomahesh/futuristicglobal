@@ -1,1 +1,940 @@
-Test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Global Inc - Innovative IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            --accent-color: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --surface-dark: rgba(255, 255, 255, 0.05);
+            --surface-light: rgba(255, 255, 255, 0.1);
+            --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.3);
+            --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--dark-gradient);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-color), #667eea);
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation: float 20s infinite linear;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation: float 25s infinite linear;
+            animation-delay: -5s;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation: float 30s infinite linear;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(45deg, var(--accent-color), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo i {
+            margin-right: 12px;
+            color: var(--accent-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        nav ul li a:hover::before {
+            left: 0;
+        }
+
+        nav ul li a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 50%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            margin: 0 10px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: #0c0c0c;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--surface-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .expertise-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .expertise-card i {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .expertise-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .expertise-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .team-image {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .team-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .team-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .team-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Approach Section */
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .step h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Mission & Vision */
+        .mission-vision-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .mission-card, .vision-card {
+            text-align: center;
+        }
+
+        .mission-card i, .vision-card i {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            animation: pulse 3s infinite;
+        }
+
+        .mission-card h3, .vision-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .mission-card p, .vision-card p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--surface-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-title h2 { font-size: 3rem; }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .team-content { grid-template-columns: 1fr; }
+            .approach-steps { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu { display: block; }
+            
+            nav ul {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(12, 12, 12, 0.95);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 0;
+            }
+            
+            nav ul.active { left: 0; }
+            nav ul li { margin: 1rem 0; }
+            
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title h2 { font-size: 2.5rem; }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .mission-vision-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title h2 { font-size: 2rem; }
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+            .glass-card { padding: 2rem; }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>Futuristic Global</span>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#approach">Approach</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Empowering Your Digital Future</h1>
+                <p>Transform your business with cutting-edge IT solutions designed for the modern enterprise. We deliver innovation that drives results.</p>
+                <div class="hero-buttons">
+                    <a href="#expertise" class="btn btn-primary">Explore Solutions</a>
+                    <a href="#contact" class="btn btn-outline">Start Your Journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Expertise</h2>
+                <p>Cutting-edge technologies and methodologies that power your digital transformation</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="glass-card expertise-card fade-in">
+                    <i class="fas fa-database"></i>
+                    <h3>Database Management</h3>
+                    <p>Scalable data architecture with advanced optimization, ensuring peak performance and reliability for mission-critical applications.</p>
+                </div>
+                <div class="glass-card expertise-card fade-in">
+                    <i class="fas fa-warehouse"></i>
+                    <h3>Data Warehousing</h3>
+                    <p>Enterprise-grade data lakes and warehouses that transform raw information into strategic business intelligence.</p>
+                </div>
+                <div class="glass-card expertise-card fade-in">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Business Intelligence</h3>
+                    <p>AI-powered analytics platforms that deliver real-time insights and predictive modeling for competitive advantage.</p>
+                </div>
+                <div class="glass-card expertise-card fade-in">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Custom AI solutions that automate processes, enhance decision-making, and unlock new possibilities for growth.</p>
+                </div>
+                <div class="glass-card expertise-card fade-in">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Full-Stack Development</h3>
+                    <p>Modern web and mobile applications built with the latest frameworks and optimized for performance and user experience.</p>
+                </div>
+                <div class="glass-card expertise-card fade-in">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Architecture</h3>
+                    <p>Scalable, secure cloud infrastructure that adapts to your needs while reducing costs and improving reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Innovation Driven by Excellence</h2>
+                <p>Meet the visionaries behind our technological breakthroughs</p>
+            </div>
+            <div class="team-content">
+                <div class="team-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Our Team">
+                </div>
+                <div class="team-text fade-in">
+                    <h3>World-Class Expertise</h3>
+                    <p>Our team comprises industry veterans and innovative thinkers who have shaped the digital landscape across Fortune 500 companies and emerging startups.</p>
+                    <p>With deep expertise in emerging technologies and a passion for solving complex challenges, we're committed to delivering solutions that don't just meet expectations—they exceed them.</p>
+                    <a href="#contact" class="btn btn-primary">Join Our Mission</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section id="approach">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Methodology</h2>
+                <p>A proven framework that ensures successful digital transformation</p>
+            </div>
+            <div class="approach-steps">
+                <div class="glass-card step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Discovery & Analysis</h3>
+                    <p>Deep-dive assessment of your current infrastructure, identifying opportunities and creating a strategic roadmap.</p>
+                </div>
+                <div class="glass-card step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Strategic Planning</h3>
+                    <p>Custom-tailored solutions designed around your business objectives, timeline, and growth projections.</p>
+                </div>
+                <div class="glass-card step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Agile Execution</h3>
+                    <p>Rapid deployment using industry best practices, with continuous feedback loops and iterative improvements.</p>
+                </div>
+                <div class="glass-card step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Continuous Evolution</h3>
+                    <p>Ongoing optimization, monitoring, and scaling to ensure your solutions grow with your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mission-vision-content">
+                <div class="glass-card mission-card fade-in">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                    <p>To revolutionize how businesses leverage technology, creating solutions that drive innovation, efficiency, and sustainable growth in an ever-evolving digital landscape.</p>
+                </div>
+                <div class="glass-card vision-card fade-in">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
+                    <p>To be the global leader in transformative IT solutions, empowering organizations to achieve breakthrough performance through cutting-edge technology and strategic partnerships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section fade-in">
+                    <h3>Futuristic Global Inc</h3>
+                    <p>Pioneering the future of business technology with innovative solutions that transform challenges into competitive advantages.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section fade-in">
+                    <h3>Our Solutions</h3>
+                    <p><i class="fas fa-chevron-right"></i> Enterprise Database Solutions</p>
+                    <p><i class="fas fa-chevron-right"></i> Cloud Infrastructure</p>
+                    <p><i class="fas fa-chevron-right"></i> AI & Machine Learning</p>
+                    <p><i class="fas fa-chevron-right"></i> Custom Development</p>
+                </div>
+                <div class="footer-section fade-in">
+                    <h3>Connect With Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, Silicon Valley</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> hello@futuristicglobal.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Futuristic Global Inc. Shaping Tomorrow's Technology Today.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('nav ul');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navMenu.classList.remove('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect with enhanced styling
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.padding = '1rem 0';
+                header.style.boxShadow = '0 10px 30px rgba(0, 212, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(12, 12, 12, 0.95)';
+                header.style.padding = '1.5rem 0';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.floating-shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.2);
+                const yPos = -(scrolled * speed);
+                shape.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Enhanced button hover effects
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic typing effect for hero title (optional enhancement)
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.textContent;
+        
+        function typeWriter(text, element, speed = 100) {
+            element.textContent = '';
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Trigger typing effect when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                typeWriter(originalText, heroTitle, 80);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
